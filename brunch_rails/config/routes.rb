@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get "/users/validate" => "users#validate"
   post "/users" => "users#create"
   post "/login" => "sessions#create"
+  post "/users/favorites" => "favorites#create"
+  get "/users/favorites" => "favorites#show"
   delete "/logout"  => "sessions#destroy"
 
 end

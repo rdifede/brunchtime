@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   # before these actions, we want to require a token
   before_action :require_token, only: [:validate]
 
+
   # method to validate a user
   # basically a way to ping the server to make sure the token cookie is correct
   # and to get the user's information
@@ -34,6 +35,6 @@ class UsersController < ApplicationController
 
   # accepted parameters for a user
   def user_params
-    params.permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password)
   end
 end

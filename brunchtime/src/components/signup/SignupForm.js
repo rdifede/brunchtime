@@ -17,35 +17,48 @@ export default class SignupForm extends Component {
   constructor(){
       super();
       // set up initial state
-      this.state = { // track inputs for form
-        inputs: {
+      this.state = {
+
           name: '',
           email: '',
           password: ''
-        }
       }
     }
 
     // method to sign up
-    signUp(e){
-      e.preventDefault(); // prevent default form action
-      // make request to server to create a new user
-      axios.post(`${this.props.url}/users`, this.state.inputs)
-        .then(res => { // the response will be the user
-          // set the user
-          this.props.setUser(res.data);
-        })
-        var {navigate} = this.props.navigation;
-        navigate('Profile')
-    }
+    async onRegisterPressed() {
+      try {
+        let response = await fetch('http://localhost:3000/users', {
+                                method: 'POST',
+                                headers: {
+                                  'Accept': 'application/json',
+                                  'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                  user:{
+                                    name: this.state.name,
+                                    email: this.state.email,
+                                    password: this.state.password,
 
-    changeInput(e, input){
-      const val = e.value;
-      this.setState(prev => { // set the input in the state to the value
-        prev.inputs[input] = val;
-        return prev;
-      });
-    }
+                                  }
+                                })
+
+                              });
+                              let res = await response.text();
+                              if (response.status >= 200 && response.status < 300) {
+                                //if user is authenticated, go to profile
+                                const {navigate} = this.props.navigation;
+                                navigate('Profile');
+                                } else {
+                                  //if user is not authenticated, stay on login page
+                                  let error = res;
+                                  throw error;
+                                }
+                              }  catch(errors) {
+
+                              }
+
+                            }
 
   render() {
 
@@ -58,44 +71,41 @@ export default class SignupForm extends Component {
           style={styles.input}
           placeholder="name"
           returnKeyType="next"
-          value={this.state.inputs.name}
+
           //turns the return key into a next button to go to the next field
           // onChangeText={e => this.changeInput(e, 'name')}
-          onChangeText={e => this.changeInput(e, 'name')}
-          // value={this.state.inputs.name}
+          onChangeText={(e) => this.setState({name: e})}
+          // value={this.state.name}
           onSubmitEditing={()=> this.emailInput.focus()}
           //this tells the next button to direct focus on the email input after the
           //name is submitted
 
-          placeholderTextColor="rgba(rgba(127, 140, 141,.6))"
+          placeholderTextColor="rgba(127, 140, 141,.6)"
         />
         <TextInput
           style={styles.input}
           placeholder="email address"
           returnKeyType="next"
-          value={this.state.inputs.email}
+
           keyboardType="email-address"
           //gives the keyboard an @ symbol to assist in typing email addresses
           ref={(email)=> this.emailInput = email}
-            onChangeText={e => this.changeInput(e, 'email')}
-            // value={this.state.inputs.email}
+            onChangeText={(e) => this.setState({email: e})}
+            // value={this.state.email}
           onSubmitEditing={()=> this.passwordInput.focus()}
           //this tells the next button to direct focus on the password input after the
           //email address is submitted
 
-          placeholderTextColor="rgba(rgba(127, 140, 141,.6)"
+          placeholderTextColor="rgba(127, 140, 141,.6)"
         />
 
         <TextInput
           style={styles.input}
           placeholder="password"
-          placeholderTextColor="rgba(rgba(127, 140, 141,.6))"
+          placeholderTextColor="rgba(127, 140, 141,.6)"
           secureTextEntry
           returnKeyType="go"
-          value={this.state.inputs.password}
-            onChangeText={e => this.changeInput(e, 'password')}
-            // value={this.state.inputs.password}
-          onSubmitEditing={this.props.toggleMode}
+            onChangeText={(e) => this.setState({password: e})}
           ref={(input)=> this.passwordInput = input}
 
           //this is the reference for the onSubmitEditing function
@@ -104,7 +114,7 @@ export default class SignupForm extends Component {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={this.signUp.bind(this)}
+          onPress={this.onRegisterPressed.bind(this)}
           >
           <Text style={styles.buttonText}>
             Sign Up

@@ -1140,3 +1140,1873 @@ Processing by FavoritesController#query as */*
 Completed 200 OK in 1493ms (Views: 20.1ms | ActiveRecord: 0.0ms)
 
 
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20170808152742)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "auth_token" varchar)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_auth_token" ON "users" ("auth_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_auth_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_auth_token' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170808152742"]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateFavorites (20170808152750)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "image" varchar, "address" varchar, "phone" varchar, "rating" integer, "website" varchar)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170808152750"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-08-11 16:04:31.513735"], ["updated_at", "2017-08-11 16:04:31.513735"]]
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_auth_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_auth_token' AND type='index'
+[0m
+Started POST "/users" for 127.0.0.1 at 2017-08-11 12:44:12 -0400
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"name"=>"R", "email"=>"R@R.com", "password"=>"[FILTERED]"}}
+Unpermitted parameter: :user
+Unpermitted parameter: :user
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Completed 400 Bad Request in 18ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-11 12:44:14 -0400
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"name"=>"R", "email"=>"R@R.com", "password"=>"[FILTERED]"}}
+Unpermitted parameter: :user
+Unpermitted parameter: :user
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Completed 400 Bad Request in 6ms (Views: 0.4ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-11 12:44:54 -0400
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"name"=>"R", "email"=>"R@R.com", "password"=>"[FILTERED]"}}
+Unpermitted parameter: :user
+Unpermitted parameter: :user
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Completed 400 Bad Request in 5ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-11 12:45:51 -0400
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"name"=>"R", "email"=>"R@R.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "r@r.com"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE User Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "r@r.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "auth_token") VALUES (?, ?, ?, ?)[0m  [["name", "R"], ["email", "r@r.com"], ["password_digest", "$2a$10$YcvsKWpd/4Ln2aSPmEoU9..eoFO9YF/uIMAmfm/TUMQpXq1uqvPwK"], ["auth_token", "LdCcG61RCVWKXbp6beD6dFMH"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 83ms (Views: 0.2ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 12:47:12 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 706ms (Views: 11.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-11 13:54:43 -0400
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"name"=>"Bec", "email"=>"Bec@bec.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bec@bec.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE User Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bec@bec.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "auth_token") VALUES (?, ?, ?, ?)[0m  [["name", "Bec"], ["email", "bec@bec.com"], ["password_digest", "$2a$10$DegmsCfSznOuCmOuf0UURO8qKjHMnQJWUQwb8HShVBU.10lCTCB3u"], ["auth_token", "qBiMpf6ub3uBp7TfoyeQVtbN"]]
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 103ms (Views: 1.2ms | ActiveRecord: 4.1ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:00:19 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"Bec@bec.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `downcase' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:5:in `create'
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:00:55 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"Bec@bec.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `downcase' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:5:in `create'
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:02:28 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"Bec@bec.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Completed 401 Unauthorized in 8ms (Views: 0.2ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:02:37 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"Bec@bec.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:03:41 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"Bec@bec.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:04:09 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"bec@bec.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-11 14:06:59 -0400
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"name"=>"Rebecca", "email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCACHE User Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "auth_token") VALUES (?, ?, ?, ?)[0m  [["name", "Rebecca"], ["email", "this@this.com"], ["password_digest", "$2a$10$e/E9qKfDo5HTxaLpZcgsS.CNrrHwocFaM0DLOlcn2h9HAVgGwH0YO"], ["auth_token", "rF2LF5MRiyTaLv4FFcBiMpvv"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 86ms (Views: 0.2ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:07:21 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 76ms (Views: 0.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:09:11 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 67ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:11:42 -0400
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to login_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:17 -0400
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:27 -0400
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:27 -0400
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:27 -0400
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:28 -0400
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:28 -0400
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:28 -0400
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:28 -0400
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:28 -0400
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:28 -0400
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:28 -0400
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:28 -0400
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:28 -0400
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:28 -0400
+  
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:28 -0400
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to users_validate_path
+                   ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+      }
+       ^):
+  
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+app/controllers/sessions_controller.rb:21: syntax error, unexpected '}', expecting keyword_end
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:14:59 -0400
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:15: syntax error, unexpected ':', expecting keyword_end
+        redirect_to: users_validate_path
+                    ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+        redirect_to: users_validate_path
+                   ^):
+  
+app/controllers/sessions_controller.rb:15: syntax error, unexpected ':', expecting keyword_end
+app/controllers/sessions_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting '}'
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:16:10 -0400
+  
+SyntaxError (/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:16: syntax error, unexpected ':', expecting keyword_end
+      redirect_to: users_validate_path
+                  ^
+/Users/deathstar/code/wdi/projects/brunchtime/brunch_rails/app/controllers/sessions_controller.rb:23: syntax error, unexpected ':', expecting keyword_end
+    redirect_to: users_validate_path
+                ^):
+  
+app/controllers/sessions_controller.rb:16: syntax error, unexpected ':', expecting keyword_end
+app/controllers/sessions_controller.rb:23: syntax error, unexpected ':', expecting keyword_end
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:17:03 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Redirected to 
+Completed 500 Internal Server Error in 85ms (Views: 0.4ms | ActiveRecord: 1.7ms)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  
+app/controllers/sessions_controller.rb:16:in `create'
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:22:44 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 80ms (Views: 0.2ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:30:32 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:31:09 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:35:33 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (20.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 95ms (Views: 0.2ms | ActiveRecord: 20.8ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:44:14 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 14:44:20 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 809ms (Views: 8.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 14:45:08 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 77ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 14:45:12 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 541ms (Views: 11.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 15:05:17 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 85ms (Views: 1.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 15:05:29 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 798ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 15:24:56 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 83ms (Views: 1.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 15:25:15 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 573ms (Views: 27.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 15:27:57 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 71ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 15:28:03 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 859ms (Views: 18.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 15:30:22 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 71ms (Views: 1.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 15:30:28 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 773ms (Views: 34.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 15:33:07 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 71ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 15:33:13 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 710ms (Views: 6.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 15:34:32 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 71ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 15:34:38 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 764ms (Views: 9.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 15:35:53 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 67ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 15:36:00 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 582ms (Views: 6.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 15:48:16 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 85ms (Views: 1.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 15:48:24 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 837ms (Views: 8.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 15:49:04 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 15:49:10 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 638ms (Views: 19.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 15:50:23 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 15:50:28 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 597ms (Views: 23.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:24:44 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 83ms (Views: 1.8ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:26:17 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 71ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 17:26:28 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 831ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:30:14 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 73ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 17:30:25 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 1753ms (Views: 12.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:31:25 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+Completed 401 Unauthorized in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:31:35 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"This@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "This@this.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:31:49 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 17:31:55 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 613ms (Views: 14.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:35:57 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 17:36:06 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 730ms (Views: 18.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:38:03 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 17:38:08 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 634ms (Views: 18.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:39:11 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=new%20york" for 127.0.0.1 at 2017-08-11 17:39:16 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"new york"}
+Completed 200 OK in 744ms (Views: 11.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:40:27 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 67ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York%20" for 127.0.0.1 at 2017-08-11 17:40:36 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York "}
+Completed 200 OK in 769ms (Views: 10.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:41:53 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 17:42:21 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 568ms (Views: 9.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:43:56 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:44:28 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 17:44:33 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 740ms (Views: 9.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:45:25 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-11 17:45:33 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 674ms (Views: 10.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:46:24 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York%20" for 127.0.0.1 at 2017-08-11 17:46:31 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York "}
+Completed 200 OK in 583ms (Views: 11.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 17:46:55 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York%20" for 127.0.0.1 at 2017-08-11 17:47:03 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York "}
+Completed 200 OK in 659ms (Views: 7.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 22:19:39 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (4.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 105ms (Views: 2.7ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/api?address=07901" for 127.0.0.1 at 2017-08-11 22:19:58 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"07901"}
+Completed 200 OK in 738ms (Views: 15.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-11 22:24:03 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 72ms (Views: 0.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api?address=07901" for 127.0.0.1 at 2017-08-11 22:24:17 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"07901"}
+Completed 200 OK in 760ms (Views: 9.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:19:54 -0400
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 90ms (Views: 0.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:20:02 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 976ms (Views: 7.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:23:38 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 82ms (Views: 1.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:23:44 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 751ms (Views: 30.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:24:33 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:24:39 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 804ms (Views: 7.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:26:19 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 80ms (Views: 1.4ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:26:26 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 705ms (Views: 8.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:27:06 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:27:14 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 690ms (Views: 7.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:28:35 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:36:09 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York%20" for 127.0.0.1 at 2017-08-12 14:36:19 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York "}
+Completed 200 OK in 962ms (Views: 8.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:36:51 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:36:58 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 664ms (Views: 13.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:37:42 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:37:49 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 783ms (Views: 9.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:38:38 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:38:45 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 589ms (Views: 11.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:39:16 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:39:21 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 627ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:40:23 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:40:29 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 599ms (Views: 17.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:41:42 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 67ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:41:46 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 678ms (Views: 8.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:43:25 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:43:30 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 893ms (Views: 12.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:44:25 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:44:36 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 649ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:45:35 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:45:41 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 626ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:46:13 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:46:19 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 716ms (Views: 10.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:46:50 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:46:57 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 790ms (Views: 10.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:47:42 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 67ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:47:50 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 736ms (Views: 9.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:50:24 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:50:31 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 663ms (Views: 11.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:51:04 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:51:10 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 973ms (Views: 10.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:51:54 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:52:01 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 733ms (Views: 9.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:53:43 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 72ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:53:49 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 619ms (Views: 10.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:56:32 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:56:38 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 627ms (Views: 15.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:57:55 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 72ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:58:02 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 668ms (Views: 15.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:58:50 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York%20" for 127.0.0.1 at 2017-08-12 14:58:57 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York "}
+Completed 200 OK in 943ms (Views: 10.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 14:59:26 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 14:59:32 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 752ms (Views: 12.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:00:10 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:00:20 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=new%20York" for 127.0.0.1 at 2017-08-12 15:00:25 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"new York"}
+Completed 200 OK in 682ms (Views: 10.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:02:51 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:02:57 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 758ms (Views: 11.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:13:23 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 79ms (Views: 1.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:13:29 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 726ms (Views: 34.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:20:12 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 75ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:20:17 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 815ms (Views: 14.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:21:36 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:21:43 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 585ms (Views: 12.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:23:07 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:23:14 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 1843ms (Views: 13.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:27:02 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 72ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:27:11 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 909ms (Views: 12.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:28:16 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:28:23 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 738ms (Views: 10.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:34:22 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 72ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:34:29 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 1076ms (Views: 14.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:35:00 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:35:06 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 794ms (Views: 11.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:36:12 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 71ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:36:18 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 725ms (Views: 13.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:39:50 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 76ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:39:58 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 732ms (Views: 12.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:41:02 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:41:09 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 675ms (Views: 11.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:43:14 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:43:22 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 674ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:43:51 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:43:59 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 782ms (Views: 9.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:44:27 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:44:33 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 703ms (Views: 9.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:45:04 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:45:09 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 780ms (Views: 9.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:45:55 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:46:02 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 633ms (Views: 9.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:47:28 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 67ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:47:35 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 683ms (Views: 9.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:48:23 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 71ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:48:29 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 721ms (Views: 9.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 15:58:48 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 71ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 15:58:54 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 782ms (Views: 14.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:06:51 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 71ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:06:57 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 689ms (Views: 14.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:07:43 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:07:48 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 711ms (Views: 13.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:08:41 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:08:47 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 612ms (Views: 16.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:09:24 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20" for 127.0.0.1 at 2017-08-12 16:09:32 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New "}
+Completed 200 OK in 741ms (Views: 12.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:24:25 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 84ms (Views: 1.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:24:35 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 972ms (Views: 16.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:26:29 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:26:34 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 808ms (Views: 19.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:30:05 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 74ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:30:11 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 771ms (Views: 15.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:31:48 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:31:53 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 738ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:32:46 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 71ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:32:53 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 682ms (Views: 32.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:33:48 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:33:53 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 729ms (Views: 9.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:34:43 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:34:50 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 708ms (Views: 9.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:36:17 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=new%20york" for 127.0.0.1 at 2017-08-12 16:36:24 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"new york"}
+Completed 200 OK in 1001ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:36:44 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:36:50 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 836ms (Views: 9.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:37:19 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 73ms (Views: 0.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:37:25 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 591ms (Views: 10.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:37:41 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=new%20york" for 127.0.0.1 at 2017-08-12 16:37:48 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"new york"}
+Completed 200 OK in 738ms (Views: 10.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:38:42 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:38:51 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 730ms (Views: 8.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:40:28 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 72ms (Views: 0.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:41:04 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 751ms (Views: 9.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:42:48 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:42:55 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 707ms (Views: 9.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:43:38 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:43:44 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 844ms (Views: 9.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:44:07 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:44:12 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 799ms (Views: 9.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 16:45:52 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 66ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 16:45:59 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 848ms (Views: 11.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 17:03:29 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 73ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 17:03:35 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 769ms (Views: 12.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 18:05:28 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 113ms (Views: 0.4ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/users/favorites" for 127.0.0.1 at 2017-08-12 18:05:28 -0400
+Processing by FavoritesController#show as */*
+Completed 200 OK in 15ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 18:05:39 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 787ms (Views: 19.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/favorites" for 127.0.0.1 at 2017-08-12 18:05:43 -0400
+Processing by FavoritesController#create as JSON
+  Parameters: {"favorite"=>{"name"=>"", "image"=>"", "address"=>"", "phone"=>""}}
+Completed 204 No Content in 46ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 18:05:59 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 958ms (Views: 13.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/favorites" for 127.0.0.1 at 2017-08-12 18:06:03 -0400
+Processing by FavoritesController#create as JSON
+  Parameters: {"favorite"=>{"name"=>"", "image"=>"", "address"=>"", "phone"=>""}}
+Completed 204 No Content in 2ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 18:07:48 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/favorites" for 127.0.0.1 at 2017-08-12 18:07:48 -0400
+Processing by FavoritesController#show as */*
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 18:07:54 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 708ms (Views: 9.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/favorites" for 127.0.0.1 at 2017-08-12 18:08:56 -0400
+Processing by FavoritesController#create as JSON
+  Parameters: {"favorite"=>{"name"=>"", "image"=>"", "address"=>"", "phone"=>""}}
+Completed 204 No Content in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/favorites" for 127.0.0.1 at 2017-08-12 18:08:56 -0400
+Processing by FavoritesController#show as */*
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 18:19:09 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 90ms (Views: 3.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/favorites" for 127.0.0.1 at 2017-08-12 18:19:09 -0400
+Processing by FavoritesController#show as */*
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 18:19:15 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 698ms (Views: 16.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 18:26:24 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 72ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/favorites" for 127.0.0.1 at 2017-08-12 18:26:24 -0400
+Processing by FavoritesController#show as */*
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 18:26:30 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 826ms (Views: 12.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 18:30:19 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/favorites" for 127.0.0.1 at 2017-08-12 18:30:19 -0400
+Processing by FavoritesController#show as */*
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 18:30:41 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 790ms (Views: 16.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 18:31:49 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/favorites" for 127.0.0.1 at 2017-08-12 18:31:49 -0400
+Processing by FavoritesController#show as */*
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 18:32:00 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 724ms (Views: 12.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 18:35:45 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 69ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/favorites" for 127.0.0.1 at 2017-08-12 18:35:45 -0400
+Processing by FavoritesController#show as */*
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api?address=New%20York" for 127.0.0.1 at 2017-08-12 18:35:52 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"New York"}
+Completed 200 OK in 929ms (Views: 10.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2017-08-12 18:36:43 -0400
+Processing by SessionsController#create as JSON
+  Parameters: {"session"=>{"email"=>"this@this.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "this@this.com"], ["LIMIT", 1]]
+Completed 200 OK in 70ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/favorites" for 127.0.0.1 at 2017-08-12 18:36:43 -0400
+Processing by FavoritesController#show as */*
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api?address=new%20York" for 127.0.0.1 at 2017-08-12 18:36:51 -0400
+Processing by FavoritesController#query as */*
+  Parameters: {"address"=>"new York"}
+Completed 200 OK in 597ms (Views: 7.4ms | ActiveRecord: 0.0ms)
+
+

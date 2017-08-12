@@ -9,7 +9,7 @@ import {
 TouchableHighlight,
 StatusBar
 } from 'react-native';
-import axios from 'axios';
+
 
 
 export default class Login extends Component {
@@ -17,38 +17,49 @@ export default class Login extends Component {
     title: 'Login!',
   };
   constructor(){
-  super();
-  // set default state
-  this.state = {
-    // we have 2 inputs that we will be changing
-    inputs: {
+    super();
+
+    this.state = {
       email: '',
-      password: ''
+      password: '',
     }
   }
-}
 
-// method to log in
-login(e){
-  e.preventDefault(); // prevent default form action
-  // send request to make sure the email and password are correct
-  axios.post(`${this.props.url}/login`, this.state.inputs)
-    .then(res => { // set the user based off of the response
-      this.props.setUser(res.data);
-    })
-    navigate('Profile')
-}
+  async login() {
+    try {
+      let response = await fetch('http://localhost:3000/login', {
+                              method: 'POST',
+                              headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                session:{
+                                  email: this.state.email,
+                                  password: this.state.password,
+                                }
+                              })
+                            });
+                            let res = await response.text();
+                            if (response.status >= 200 && response.status < 300) {
+                              //if user is authenticated, go to profile
+                              const {navigate} = this.props.navigation;
+                              navigate('Profile');
+                              } else {
+                                //if user is not authenticated, stay on login page
+                                let error = res;
+                                throw error;
+                              }
+                            }  catch(errors) {
 
-changeInput(e, input){
-  const val = e.target.value;
-  this.setState(prev => { // set the input in the state to the value
-    prev.inputs[input] = val;
-    return prev;
-  });
-}
+                            }
+
+                          }
+
+
 
   render() {
-    var {navigate} = this.props.navigation;
+    let {navigate} = this.props.navigation;
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <View style={styles.logoContainer}>
@@ -71,7 +82,7 @@ changeInput(e, input){
             onSubmitEditing={()=> this.passwordInput.focus()}
             //this tells the next button to direct focus on the password input after the
             //email address is submitted
-            onChangeText={e => this.changeInput(e, 'email')}
+            onChangeText={(e) => this.setState({email: e})}
             placeholderTextColor="rgba(127, 140, 141,.8)"
           />
 
@@ -80,12 +91,11 @@ changeInput(e, input){
             placeholder="password"
             placeholderTextColor="rgba(127, 140, 141,.8)"
             secureTextEntry
-            returnKeyType="go"
-            onChangeText={e => this.changeInput(e, 'password')}
+            returnKeyType="done"
+            onChangeText={(e) => this.setState({password: e})}
             onSubmitEditing={this.props.toggleMode}
-
             ref={(input)=> this.passwordInput = input}
-            //this is the reference for the onSubmitEditing function
+            //this is the reference for the onSubmitEditing function in the email field
 
           />
 

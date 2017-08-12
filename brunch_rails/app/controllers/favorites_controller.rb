@@ -24,4 +24,29 @@ def search
 
 	end
 
+  def new
+    @favorite = Favorite.new
+  end
+
+  def create
+    @favorite = Favorite.new(fav_params)
+
+    if @favorite.valid?
+      @favorite.save()
+
+      render :json
+    end
+  end
+
+  def show
+    @Favorites = Favorite.all
+
+    render :json
+  end
+
+  private
+  def fav_params
+    params.require(:favorite).permit(:name, :address, :image, :phone)
+end
+
 end

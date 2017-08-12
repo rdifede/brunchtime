@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170808152750) do
     t.string "password_digest"
     t.string "auth_token"
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end

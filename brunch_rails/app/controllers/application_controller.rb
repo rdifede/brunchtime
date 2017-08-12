@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  # method to require a token on a request
   def require_token
     # find the user by the token provided in the params
     @current_user = User.find_by(:auth_token => params[:auth_token])
