@@ -48,7 +48,7 @@ export default class SignupForm extends Component {
                               if (response.status >= 200 && response.status < 300) {
                                 //if user is authenticated, go to profile
                                 const {navigate} = this.props.navigation;
-                                navigate('Profile');
+                                navigate('Profile', { user_id: JSON.parse(res).id, name: JSON.parse(res).name });
                                 } else {
                                   //if user is not authenticated, stay on login page
                                   let error = res;
@@ -146,7 +146,8 @@ const styles = StyleSheet.create({
     color: 'white',
     padding: 7,
     flex: 1,
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: 'American Typewriter'
   },
   button: {
     height: 35,

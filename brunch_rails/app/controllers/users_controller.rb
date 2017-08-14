@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   # before these actions, we want to require a token
   before_action :require_token, only: [:validate]
 
+  def index
+    @user = User.all
+    render :json => User.all.as_json
+  end
 
   # method to validate a user
   # basically a way to ping the server to make sure the token cookie is correct

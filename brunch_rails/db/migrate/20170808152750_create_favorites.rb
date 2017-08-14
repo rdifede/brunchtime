@@ -7,6 +7,7 @@ class CreateFavorites < ActiveRecord::Migration[5.1]
     t.string :phone
     t.integer :rating
     t.string :website
+    t.belongs_to :user, foreign_key: true
     end
   end
 end

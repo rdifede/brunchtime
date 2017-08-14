@@ -30,7 +30,6 @@ def search
 
   def create
     @favorite = Favorite.new(fav_params)
-
     if @favorite.valid?
       @favorite.save()
 
@@ -39,14 +38,27 @@ def search
   end
 
   def show
-    @Favorites = Favorite.all
+    @user = User.find(params[:id])
+    @Favorites = Favorite.where(:user_id => @user)
 
-    render :json
+
+    render :json => @Favorites.as_json
+  end
+
+  def destroy
+    @favorite = Favorite.find(params[:id])
+    @favorite.destroy
+  end
+
+  def one
+    @fav = Favorite.find(params[:id])
+
+    render :json => @fav.as_json
   end
 
   private
   def fav_params
-    params.require(:favorite).permit(:name, :address, :image, :phone)
+    params.require(:favorite).permit(:name, :address, :image, :phone, :user_id)
 end
 
 end

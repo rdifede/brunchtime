@@ -21,7 +21,7 @@ export default class Login extends Component {
 
     this.state = {
       email: '',
-      password: '',
+      password: ''
     }
   }
 
@@ -43,8 +43,9 @@ export default class Login extends Component {
                             let res = await response.text();
                             if (response.status >= 200 && response.status < 300) {
                               //if user is authenticated, go to profile
+                              console.log(res)
                               const {navigate} = this.props.navigation;
-                              navigate('Profile');
+                              navigate('Profile', { user_id: JSON.parse(res).id, name: JSON.parse(res).name });
                               } else {
                                 //if user is not authenticated, stay on login page
                                 let error = res;
@@ -63,10 +64,11 @@ export default class Login extends Component {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <View style={styles.logoContainer}>
-          <Text style={styles.title}>BRUNCH TIME</Text>
+          {/* <Text style={styles.title}>Brunch</Text> */}
           <Image
             style={styles.logo}
-            source={require('../../images/mimosa.png')}/>
+            source={require('../../images/BrunchTime.png')}/>
+            {/* <Text style={styles.title2}>Time</Text> */}
             <Text style={styles.subText}>For those who brunch.</Text>
         </View>
         <View>
@@ -133,17 +135,28 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   logo: {
-    width: 100,
+    width: 325,
     height: 100,
-    margin: 20
+    // margin: 20
   },
   title: {
     color: 'white',
-    fontSize: 30,
-    marginTop: 50
+    fontSize: 25,
+    marginTop: 50,
+    width: 250,
+    fontFamily: 'Zapfino',
+    alignItems: 'center'
+  },
+  title2: {
+    color: 'white',
+    fontSize: 25,
+    width: 150,
+    fontFamily: 'Zapfino',
+    alignItems: 'center'
   },
   subText: {
-    fontSize: 15
+    fontSize: 25,
+    fontFamily: 'SignPainter'
   },
   input: {
     height: 45,
@@ -158,7 +171,8 @@ const styles = StyleSheet.create({
     color: 'white',
     padding: 7,
     flex: 1,
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: 'American Typewriter'
   },
   button: {
     height: 35,
